@@ -26,9 +26,9 @@ int main(int, char *[])
     cleanPolyData->Update();
     auto cleanPts = cleanPolyData->GetOutput()->GetNumberOfPoints();
 
-    std::cout << "Original points" << pts << std::endl;
-    std::cout << "Cleaned points " << cleanPts << std::endl;
-    std::cout << "Reduction      "
+    std::cout << "Original points " << pts << std::endl;
+    std::cout << "Cleaned points  " << cleanPts << std::endl;
+    std::cout << "Reduction       "
               << (1.0 - static_cast<double>(cleanPts) / pts) * 100.0 << "%"
               << std::endl;
 
@@ -36,14 +36,14 @@ int main(int, char *[])
     inputMapper->SetInputConnection(pointSource->GetOutputPort());
     vtkNew<vtkActor> inputActor;
     inputActor->SetMapper(inputMapper);
-    inputActor->GetProperty()->SetColor(colors->GetColor3d("Lime").GetData());
+    inputActor->GetProperty()->SetColor(colors->GetColor3d("orange").GetData());
     inputActor->GetProperty()->SetPointSize(3);
 
     vtkNew<vtkPolyDataMapper> cleanedMapper;
     cleanedMapper->SetInputConnection(cleanPolyData->GetOutputPort());
     vtkNew<vtkActor> cleanedActor;
     cleanedActor->SetMapper(cleanedMapper);
-    cleanedActor->GetProperty()->SetColor(colors->GetColor3d("Lime").GetData());
+    cleanedActor->GetProperty()->SetColor(colors->GetColor3d("orange").GetData());
     cleanedActor->GetProperty()->SetPointSize(3);
 
     // There will be one render window
@@ -64,12 +64,12 @@ int main(int, char *[])
     vtkNew<vtkRenderer> leftRenderer;
     renderWindow->AddRenderer(leftRenderer);
     leftRenderer->SetViewport(leftViewport);
-    leftRenderer->SetBackground(colors->GetColor3d("van_dyke_brown").GetData());
+    leftRenderer->SetBackground(colors->GetColor3d("midnightblue").GetData());
 
     vtkNew<vtkRenderer> rightRenderer;
     renderWindow->AddRenderer(rightRenderer);
     rightRenderer->SetViewport(rightViewport);
-    rightRenderer->SetBackground(colors->GetColor3d("ultramarine").GetData());
+    rightRenderer->SetBackground(colors->GetColor3d("royalblue").GetData());
 
     leftRenderer->AddActor(inputActor);
     rightRenderer->AddActor(cleanedActor);
